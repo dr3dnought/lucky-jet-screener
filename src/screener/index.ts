@@ -48,7 +48,6 @@ export default class Screener {
            * if buffer is empty, add new cell without any check
            */
           if (this.cellRingBuffer.isEmpty()) {
-            logger.debug("LAST X: Circle Buffer is empty");
             this.cellRingBuffer.add(cell);
             return;
           }
@@ -58,11 +57,8 @@ export default class Screener {
            * if TRUE, call onNewX,
            * if FALSE, clear buffer
            */
-          if (this.cellRingBuffer.getLast()) {
+          if (this.cellRingBuffer.getLast() != undefined) {
             if (cell.id - this.cellRingBuffer.getLast()!.id == 1) {
-              console.log(
-                `FIRST ${cell.id} second: ${this.cellRingBuffer.getLast()!.id}`
-              );
               this.cellRingBuffer.add(cell);
               if (this.handler.onNewX) {
                 this.handler.onNewX(cell);

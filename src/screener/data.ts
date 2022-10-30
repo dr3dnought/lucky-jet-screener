@@ -8,7 +8,7 @@ export class CoefficientCell {
   constructor(id: number, coefficient: number) {
     this.id = id;
     this.coefficient = coefficient;
-    this.isSuccess = coefficient >= 1.99 ? true : false;
+    this.isSuccess = coefficient <= 1.99 ? true : false;
   }
 
   toString() {

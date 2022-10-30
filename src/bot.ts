@@ -23,11 +23,6 @@ export default class ScreenerBot {
         process.env.ONE_WIN_URL,
         parseInt(process.env.LIMIT || "2"),
         {
-          onNewX: (cell) => {
-            const mes = constants.bot_messages.new_x(cell);
-            logger.info(mes);
-            ctx.reply(mes);
-          },
           onCircleSuccess: (cells) => {
             let coefCircleMessage = constants.bot_messages.success_circle;
             cells.forEach((cell) => {
@@ -46,7 +41,7 @@ export default class ScreenerBot {
 
     //POLL
     this.telegraf.command(constants.commands.start_screening, (ctx) => {
-      logger.debug(`Command /poll has been cought`);
+      logger.debug(`command /poll has been cought`);
       this.screener?.start();
 
       ctx.reply(constants.bot_messages.start_screening);
@@ -54,7 +49,7 @@ export default class ScreenerBot {
 
     //STOP
     this.telegraf.command(constants.commands.stop, (ctx) => {
-      logger.debug(`Command /stop has been cought`);
+      logger.debug(`command /stop has been cought`);
       this.screener?.stop();
 
       ctx.reply(constants.bot_messages.stop);
@@ -62,7 +57,7 @@ export default class ScreenerBot {
 
     //SHOW
     this.telegraf.command(constants.commands.show_circle, (ctx) => {
-      logger.debug(`Command /show has been cought`);
+      logger.debug(`command /show has been cought`);
       ctx.reply(
         constants.bot_messages.get_circle(this.screener?.getCircle() || [])
       );
